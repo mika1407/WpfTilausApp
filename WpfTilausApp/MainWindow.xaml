@@ -26,16 +26,18 @@
         <DatePicker x:Name="dpToimitusPvm" HorizontalAlignment="Left" Height="31" Margin="229,109,0,0" VerticalAlignment="Top" Width="170" RenderTransformOrigin="0.4,0.484"/>
         <Label x:Name="lblToimitusPvm" Content="ToimitusPvm" HorizontalAlignment="Left" Margin="229,86,0,0" VerticalAlignment="Top" Width="99"/>
         <Label x:Name="lblTilausPvm" Content="TilausPvm" HorizontalAlignment="Left" Margin="20,86,0,0" VerticalAlignment="Top" Width="98"/>
-        <ComboBox x:Name="cbTuote" HorizontalAlignment="Left" Height="36" Margin="20,183,0,0" VerticalAlignment="Top" Width="170" RenderTransformOrigin="0.5,0.917"/>
+        <ComboBox x:Name="cbTuote" HorizontalAlignment="Left" Height="36" Margin="20,183,0,0" VerticalAlignment="Top" Width="170" RenderTransformOrigin="0.5,0.917" DropDownClosed="cbTuote_DropDownClosed"/>
         <Label x:Name="lblTuote" Content="Valitse tuote listalta" HorizontalAlignment="Left" Margin="20,157,0,0" VerticalAlignment="Top" Width="136"/>
         <TextBox x:Name="txtTuoteNumero" HorizontalAlignment="Left" Height="36" Margin="207,183,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="65"/>
         <Label x:Name="lblTuoteNumero" Content="Tuotenumero" HorizontalAlignment="Left" Margin="207,158,0,0" VerticalAlignment="Top" Width="90"/>
-        <Button x:Name="btnLisaaRivi" Content="Lisää rivi" HorizontalAlignment="Left" Height="37" Margin="733,172,0,0" VerticalAlignment="Top" Width="104"/>
+        <Button x:Name="btnLisaaRivi" Content="Lisää rivi" HorizontalAlignment="Left" Height="37" Margin="733,172,0,0" VerticalAlignment="Top" Width="104" Click="btnLisaaRivi_Click"/>
         <TextBox x:Name="txtMaara" HorizontalAlignment="Left" Height="36" Margin="311,183,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="88"/>
-        <TextBox x:Name="txtAhinta" HorizontalAlignment="Left" Height="36" Margin="429,183,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="98"/>
+        <TextBox x:Name="txtAHinta" HorizontalAlignment="Left" Height="36" Margin="429,183,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="98"/>
         <Label x:Name="lblMaara" Content="Määrä" HorizontalAlignment="Left" Margin="311,158,0,0" VerticalAlignment="Top" Width="88"/>
         <Label x:Name="lblAhinta" Content="A-Hinta" HorizontalAlignment="Left" Margin="429,158,0,0" VerticalAlignment="Top" Height="26" Width="98"/>
         <DataGrid x:Name="dgTilausRivit" HorizontalAlignment="Left" Height="192" Margin="20,234,0,0" VerticalAlignment="Top" Width="791"/>
+        <TextBox x:Name="txtRiviSumma" HorizontalAlignment="Left" Height="36" Margin="561,183,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="97"/>
+        <Label x:Name="lblSumma" Content="Summa" HorizontalAlignment="Left" Margin="561,158,0,0" VerticalAlignment="Top" Width="67"/>
 
     </Grid>
 </Window>

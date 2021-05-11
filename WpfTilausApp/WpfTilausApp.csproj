@@ -94,9 +94,11 @@
       <DependentUpon>TilausDB.edmx</DependentUpon>
     </Compile>
     <Compile Include="TilausOtsikko.cs" />
+    <Compile Include="TilausRivi.cs" />
     <Compile Include="Tilausrivit.cs">
       <DependentUpon>TilausDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Tuote.cs" />
     <Compile Include="Tuotteet.cs">
       <DependentUpon>TilausDB.tt</DependentUpon>
     </Compile>

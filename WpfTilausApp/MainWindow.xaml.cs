@@ -20,11 +20,48 @@ namespace WpfTilausApp
     /// </summary>
     public partial class MainWindow : Window
     {
+        DateTime tänään = DateTime.Today;
+        Decimal RivienSummaYht = 0;
         public MainWindow()
         {
             InitializeComponent();
             HaeAsiakkaat(); //Täytetään Asiakas - comboboxin sisältö
             HaeTuotteet();
+
+            dpTilausPvm.SelectedDate = tänään;  //Datepickerin oletuspvm
+            dpToimitusPvm.SelectedDate = tänään.AddDays(14);  //Datepickerin oletuspvm
+            //Luodaan ikäänkuin ilmaan DataGridTextColumn -tyyppisiä olioita
+            DataGridTextColumn colTilausRiviNumero = new DataGridTextColumn();
+            DataGridTextColumn colTilausNumero = new DataGridTextColumn();
+            DataGridTextColumn colTuoteNumero = new DataGridTextColumn();
+            DataGridTextColumn colTuoteNimi = new DataGridTextColumn();
+            DataGridTextColumn colMaara = new DataGridTextColumn();
+            DataGridTextColumn colAHinta = new DataGridTextColumn();
+            DataGridTextColumn colRivinSumma = new DataGridTextColumn();
+            //Oliot sidotaan tietyn nimiseen sarakkeeseen < --kohdistuu myöhemmin olion ominaisuuksiin, kunhan olio on ensin viety listalle
+            colTilausRiviNumero.Binding = new Binding("TilausRiviNumero");
+            colTilausNumero.Binding = new Binding("TilausNumero");
+            colTuoteNumero.Binding = new Binding("TuoteNumero");
+            colTuoteNimi.Binding = new Binding("TuoteNimi");
+            colMaara.Binding = new Binding("Maara");
+            colAHinta.Binding = new Binding("AHinta");
+            colRivinSumma.Binding = new Binding("Summa");
+            //DataGridin otsikot 
+            colTilausRiviNumero.Header = "Tilausrivin numero";
+            colTilausNumero.Header = "Tilauksen numero";
+            colTuoteNumero.Header = "Tuotenumero";
+            colTuoteNimi.Header = "Tuotenimi";
+            colMaara.Header = "Määrä";
+            colAHinta.Header = "A-Hinta";
+            colRivinSumma.Header = "Rivin summa";
+            //Edellä "ilmaan" luotujen sarakkeiden sijoitus konkreettiseen DataGridiin, joka on luotu formille
+            dgTilausRivit.Columns.Add(colTilausRiviNumero);
+            dgTilausRivit.Columns.Add(colTilausNumero);
+            dgTilausRivit.Columns.Add(colTuoteNumero);
+            dgTilausRivit.Columns.Add(colTuoteNimi);
+            dgTilausRivit.Columns.Add(colMaara);
+            dgTilausRivit.Columns.Add(colAHinta);
+            dgTilausRivit.Columns.Add(colRivinSumma);
         }
 
         private void HaeAsiakkaat()
@@ -68,9 +105,18 @@ namespace WpfTilausApp
             txtAsiakasNumero.Text = AsiakasNro.ToString();
         }
 
+        private void cbTuote_DropDownClosed(object sender, EventArgs e)
+        {
+            cbPairTuote cbp = (cbPairTuote)cbTuote.SelectedItem;
+            string TuoteNimi = cbp.tuoteNimi;
+            int TuoteNro = cbp.tuoteNro;
+            txtTuoteNumero.Text = TuoteNro.ToString();
+        }
+
         private void btnTallenna_Click(object sender, RoutedEventArgs e)
         {
             TilausOtsikko Tilaus = new TilausOtsikko();
+
             Tilaus.AsiakasNumero = int.Parse(txtAsiakasNumero.Text);
             Tilaus.ToimitusOsoite = txtToimitusOsoite.Text; //<-- Lisää toimitusosoite käyttöliittymään
             Tilaus.Postinumero = txtPostinumero.Text;
@@ -108,6 +154,51 @@ namespace WpfTilausApp
             {
                 return "0"; //Jos tallennus tietokantaan epäonnistuu, tämä rutiini palauttaa nollan
             }
+        }
+
+        private void btnLisaaRivi_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                TilausRivi tilausRivi = new TilausRivi();
+                tilausRivi.TilausNumero = int.Parse(txtTilausNumero.Text);
+                tilausRivi.TuoteNumero = int.Parse(txtTuoteNumero.Text);
+                tilausRivi.TuoteNimi = cbTuote.Text;
+                tilausRivi.Maara = int.Parse(txtMaara.Text);
+                tilausRivi.AHinta = Convert.ToDecimal(txtAHinta.Text);
+
+                tilausRivi.TilausRiviNumero = VieTilausRiviKantaan(tilausRivi);
+
+
+                RivienSummaYht += tilausRivi.RiviSumma(); //Kuten tämä: RivinSummaYht = RivinSummaYht + TilausR.RiviSumma();
+                txtRiviSumma.Text = RivienSummaYht.ToString();
+                dgTilausRivit.Items.Add(tilausRivi);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            txtTuoteNumero.Clear();
+            txtMaara.Clear();
+            txtAHinta.Clear();
+        }
+        private int VieTilausRiviKantaan(TilausRivi TilausR)
+        {
+            TilausDBEntities entities = new TilausDBEntities();
+
+            Tilausrivit dbItem = new Tilausrivit()
+            {
+                TilausID = TilausR.TilausNumero,
+                TuoteID = TilausR.TuoteNumero,
+                Maara = TilausR.Maara,
+                Ahinta = TilausR.AHinta
+            };
+
+            entities.Tilausrivit.Add(dbItem);
+            entities.SaveChanges();
+
+            int id = dbItem.TilausriviID; //Haetaan juuri lisätyn rivin IDENTITEETTIsarakkeen arvo (eli PK)
+            return id; //Pa
         }
     }
 }

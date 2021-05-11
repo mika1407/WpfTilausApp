@@ -8,6 +8,8 @@ namespace WpfTilausApp
 {
     class cbPairTuote
     {
+        internal object aHinta;
+
         public string tuoteNimi { get; set; }
         public int tuoteNro { get; set; }
 
