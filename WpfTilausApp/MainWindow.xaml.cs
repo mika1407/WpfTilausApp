@@ -24,6 +24,7 @@ namespace WpfTilausApp
         {
             InitializeComponent();
             HaeAsiakkaat(); //Täytetään Asiakas - comboboxin sisältö
+            HaeTuotteet();
         }
 
         private void HaeAsiakkaat()
@@ -41,6 +42,22 @@ namespace WpfTilausApp
             cbAsiakas.DisplayMemberPath = "asiakasNimi";
             cbAsiakas.SelectedValuePath = "asiakasNro";
             cbAsiakas.ItemsSource = cbpairAsiakkaat;
+        }
+        private void HaeTuotteet()
+        {
+            List<cbPairTuote> cbpairTuotteet = new List<cbPairTuote>();
+            TilausDBEntities entities = new TilausDBEntities();
+
+            var tuotteet = from a in entities.Tuotteet
+                           select a;
+
+            foreach (var tuote in tuotteet)
+            {
+                cbpairTuotteet.Add(new cbPairTuote(tuote.Nimi, tuote.TuoteID));
+            }
+            cbTuote.DisplayMemberPath = "tuoteNimi";
+            cbTuote.SelectedValuePath = "tuoteNro";
+            cbTuote.ItemsSource = cbpairTuotteet;
         }
 
         private void cbAsiakas_DropDownClosed(object sender, EventArgs e)

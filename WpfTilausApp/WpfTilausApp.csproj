@@ -68,6 +68,7 @@
       <DependentUpon>TilausDB.tt</DependentUpon>
     </Compile>
     <Compile Include="cbPairAsiakas.cs" />
+    <Compile Include="cbPairTuote.cs" />
     <Compile Include="Henkilot.cs">
       <DependentUpon>TilausDB.tt</DependentUpon>
     </Compile>
