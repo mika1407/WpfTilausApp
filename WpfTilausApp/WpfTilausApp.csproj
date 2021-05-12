@@ -75,6 +75,9 @@
     <Compile Include="formPostitoimiPaikat.xaml.cs">
       <DependentUpon>formPostitoimiPaikat.xaml</DependentUpon>
     </Compile>
+    <Compile Include="formTuotteet.xaml.cs">
+      <DependentUpon>formTuotteet.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Henkilot.cs">
       <DependentUpon>TilausDB.tt</DependentUpon>
     </Compile>
@@ -109,6 +112,10 @@
       <DependentUpon>TilausDB.tt</DependentUpon>
     </Compile>
     <Page Include="formPostitoimiPaikat.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="formTuotteet.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

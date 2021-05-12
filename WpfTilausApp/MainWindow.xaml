@@ -39,6 +39,7 @@
         <TextBox x:Name="txtRiviSumma" HorizontalAlignment="Left" Height="36" Margin="561,183,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="97"/>
         <Label x:Name="lblSumma" Content="Summa" HorizontalAlignment="Left" Margin="561,158,0,0" VerticalAlignment="Top" Width="67"/>
         <Button x:Name="btnPostitoimiPaikat" Content="Postitoimipaikat" HorizontalAlignment="Left" Height="46" Margin="13,460,0,0" VerticalAlignment="Top" Width="127" Click="BtnPostitoimiPaikat_Click"/>
+        <Button x:Name="btnTuotteet" Content="Tuotteet" HorizontalAlignment="Left" Height="46" Margin="159,460,0,0" VerticalAlignment="Top" Width="127" Click="BtnTuotteet_Click"/>
 
     </Grid>
 </Window>

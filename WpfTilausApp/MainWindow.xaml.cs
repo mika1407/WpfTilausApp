@@ -206,5 +206,11 @@ namespace WpfTilausApp
             formPostitoimiPaikat frmPostmp = new formPostitoimiPaikat();
             frmPostmp.Show();
         }
+
+        private void BtnTuotteet_Click(object sender, RoutedEventArgs e)
+        {
+            formTuotteet frmTuotteet = new formTuotteet();
+            frmTuotteet.Show();
+        }
     }
 }
