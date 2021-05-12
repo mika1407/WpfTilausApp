@@ -200,5 +200,11 @@ namespace WpfTilausApp
             int id = dbItem.TilausriviID; //Haetaan juuri lisätyn rivin IDENTITEETTIsarakkeen arvo (eli PK)
             return id; //Pa
         }
+
+        private void BtnPostitoimiPaikat_Click(object sender, RoutedEventArgs e)
+        {
+            formPostitoimiPaikat frmPostmp = new formPostitoimiPaikat();
+            frmPostmp.Show();
+        }
     }
 }

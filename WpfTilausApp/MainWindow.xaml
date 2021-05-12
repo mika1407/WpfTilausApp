@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfTilausApp"
         mc:Ignorable="d"
-        Title="WpfTilausApp 1.0" Height="481.5" Width="879.5">
+        Title="WpfTilausApp 1.0" Height="553.5" Width="879.5">
     <Grid>
         <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="143" Margin="10,10,0,0" Stroke="Black" VerticalAlignment="Top" Width="839"/>
         <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="283" Margin="10,158,0,0" Stroke="Black" VerticalAlignment="Top" Width="839"/>
@@ -38,6 +38,7 @@
         <DataGrid x:Name="dgTilausRivit" HorizontalAlignment="Left" Height="192" Margin="20,234,0,0" VerticalAlignment="Top" Width="791"/>
         <TextBox x:Name="txtRiviSumma" HorizontalAlignment="Left" Height="36" Margin="561,183,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="97"/>
         <Label x:Name="lblSumma" Content="Summa" HorizontalAlignment="Left" Margin="561,158,0,0" VerticalAlignment="Top" Width="67"/>
+        <Button x:Name="btnPostitoimiPaikat" Content="Postitoimipaikat" HorizontalAlignment="Left" Height="46" Margin="13,460,0,0" VerticalAlignment="Top" Width="127" Click="BtnPostitoimiPaikat_Click"/>
 
     </Grid>
 </Window>
